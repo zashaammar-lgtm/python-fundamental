@@ -1,36 +1,12 @@
 import csv
-
-# Baca Semua Data Dari csv
-with open("keuangan.csv", newline="", encoding="utf-8") as f:
-    reader = csv.DictReader(f)
-    data = list(reader)
-print(data)
-
-print(" ")
-      
-# 1. Tampilkan Semua Data
-print("Semua Data")
-for row in data:
-    print(
-        f"{row["Tanggal"]} | {row["Keterangan"]} | {row["Kategori"]} | Rp{row["Jumlah"]}")
-
-print(" ")
-
-#2. Hitung Semua Pengeluaran
-Total = sum(int(row["Jumlah"]) for row in data)
-print(f"Total Pengeluaran: Rp.{Total}")
-
-print(" ")
-
-# 3. Hitung Total Per Kategori
-kategori_total = {}
-for row in data:
-    kategori = row["Kategori"]
-    jumlah = int (row["Jumlah"])
-    if kategori not in kategori_total:
-        kategori_total[kategori] = 0
-    kategori_total[kategori] += jumlah
-
-print("😎 Pengeluaran per Kategori : ")
-for kategori, jumlah in kategori_total.items():
-    print(f"- {kategori} : Rp.{jumlah}")
+import json
+print("-------csv-------")
+file_json_path = r"C:\Users\Dzaky Ammar Banu\OneDrive\Documents\belajar python\materi-10-file\rukun_islam.json"
+with open(file_json_path, "r") as file_rukun_islam:
+# guanakan fungsi reader() dari module csv
+    data_rukun_islam = json.load(file_rukun_islam)
+    print(f"Judul:{data_rukun_islam['Judul']}")
+    print(f"Jumlah rukun:{data_rukun_islam}")
+    # keluarkan seluruh data dengan forloop
+    for rukun in data_rukun_islam:
+        print(rukun)
